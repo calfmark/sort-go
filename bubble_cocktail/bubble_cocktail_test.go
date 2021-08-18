@@ -4,10 +4,11 @@ import (
 	"testing"
 	"sort-go/sort_test"
 )
-
 func TestSort(t *testing.T) {
 	for _, test := range sort_test.Cases {
-		res := Sort(test.Input)
+		input := make([]int, len(test.Input))
+		copy(input, test.Input)
+		res := Sort(input)
 		if !sort_test.IsEqualSlice(test.Output, res) {
 			t.Errorf("sort(%v) = %v, want %v", test.Input, res, test.Output)
 		}
