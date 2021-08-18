@@ -1,7 +1,5 @@
 package gsort
 
-//import "fmt"
-
 // 二元选择排序
 //每轮选择时记录最小值和最大值，然后分别把最大最小值移到数组的头尾。
 func Sort(sli []int) []int {
@@ -10,7 +8,7 @@ func Sort(sli []int) []int {
 	for i := 0; i < len/2; i++ {
 		maxIdx := i
 		minIdx := i
-		for j := i+1; j < len - i; j++ {
+		for j := i + 1; j < len-i; j++ {
 			if sli[j] > sli[maxIdx] {
 				maxIdx = j
 			}
