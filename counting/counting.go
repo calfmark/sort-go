@@ -35,21 +35,21 @@ func Sort(sli []int) []int {
 	}
 
 	//4. 每个元素在结果数组中的最后一个下标位置 = 前面比自己小的数字的总数 + 自己的数量 - 1。
-	//   我们将 counting[0] 先减去 1，后续 counting 直接累加即可
+	//   我们将 countSli[0] 先减去 1，后续 countSli 直接累加即可
 	countSli[0]--
 	for i := 1; i < rang; i++ {
-		// 将 counting 计算成当前数字在结果中的最后一个下标位置。
+		// 将 countSli 计算成当前数字在结果中的最后一个下标位置。
 		// 位置 = 前面比自己小的数字的总数 + 自己的数量 - 1
 		countSli[i] += countSli[i-1]
 	}
 
-	//5. 从后往前遍历数组，通过 counting 中记录的下标位置，将 arr 中的元素放到 tmp数组中
+	//5. 从后往前遍历数组，通过 countSli 中记录的下标位置，将 sli 中的元素放到 tmp数组中
 	tmpSli := make([]int, len(sli))
 	for i := len(sli) - 1; i >= 0; i-- {
-		// counting[arr[i] - min] 表示此元素在结果数组中的下标,
-		// 由于前面的counting[0] 已经减了 1，所以这里的减 1 可以省略
+		// countSli[sli[i] - min] 表示此元素在结果数组中的下标,
+		// 由于前面的countSli[0] 已经减了 1，所以这里的减 1 可以省略
 		tmpSli[countSli[sli[i]-min]] = sli[i]
-		// 更新 counting[arr[i] - min]，指向此元素的前一个下标
+		// 更新 countSli[sli[i] - min]，指向此元素的前一个下标
 		countSli[sli[i]-min]--
 	}
 
