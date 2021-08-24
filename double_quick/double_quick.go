@@ -51,26 +51,25 @@ func doubleQuickSort(sli []int, start int, end int) {
 		}
 		for great--; sli[great] > pivot2; great-- {
 		}
-        /*
-         * Partitioning:
-         *
-         *   left part           center part                   right part
-         * +--------------------------------------------------------------+
-         * |  < pivot1  |  pivot1 <= && <= pivot2  |    ?    |  > pivot2  |
-         * +--------------------------------------------------------------+
-         *               ^                          ^       ^
-         *               |                          |       |
-         *              less                        k     great
-         *
-         * Invariants:
-         *
-         *              all in (start, less)   < pivot1
-         *    pivot1 <= all in [less, k)     <= pivot2
-         *              all in (great, end) > pivot2
-         *
-         * Pointer k is the first index of ?-part.
-         */
-		outer:
+		/*
+		 * Partitioning:
+		 *
+		 *   left part           center part                   right part
+		 * +--------------------------------------------------------------+
+		 * |  < pivot1  |  pivot1 <= && <= pivot2  |    ?    |  > pivot2  |
+		 * +--------------------------------------------------------------+
+		 *               ^                          ^       ^
+		 *               |                          |       |
+		 *              less                        k     great
+		 *
+		 * Invariants:
+		 *
+		 *              all in (start, less)   < pivot1
+		 *    pivot1 <= all in [less, k)     <= pivot2
+		 *              all in (great, end) > pivot2
+		 *
+		 * Pointer k is the first index of ?-part.
+		 */
 		for k := less; k <= great; k++ {
 			tmpk := sli[k]
 			if tmpk < pivot1 { // 移到左边
@@ -79,10 +78,10 @@ func doubleQuickSort(sli []int, start int, end int) {
 				less++
 			} else if tmpk > pivot2 { // 移到右边
 				// 因为sli[great]还没有判断，所以不知道它属于哪个区域
-				for ; sli[great] > pivot2 && k >= great; great-- {
+				for ;sli[great] > pivot2 && k >= great; great-- {
 				}
 				if great < k {
-					break outer
+					break
 				}
 				// 此时great <= pivot2
 				sli[k] = sli[great]
