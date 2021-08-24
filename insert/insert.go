@@ -9,11 +9,13 @@ package gsort
 func Sort(sli []int) []int {
 	len := len(sli)
 	for i := 1; i < len; i++ {
+		//待往前插入的数站起来
 		currentV := sli[i]
 		j := i
 		for ; j > 0 && currentV < sli[j-1]; j-- {
 			sli[j] = sli[j-1]
 		}
+		//找到位置坐下
 		sli[j] = currentV
 	}
 	return sli
